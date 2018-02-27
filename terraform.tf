@@ -13,7 +13,7 @@ resource "google_compute_instance" "instance1" {
     subnetwork = "${google_compute_subnetwork.cr460-subnet1.self_link}" # Interface Reseau
   }
 
-  tags = ["web", "patate", "cr460"]
+  tags = ["web", "patate", "cr460", "linux"]
 }
 
 #Definition du sous-reseau
@@ -40,6 +40,18 @@ resource "google_compute_firewall" "http" {
   }
 
   target_tags = ["web"]
+}
+
+resource "google_compute_firewall" "ssh" {
+  name    = "ssh"
+  network = "${google_compute_network.cr460.name}"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  target_tags = ["linux"]
 }
 
 # Definir le fournisseur nuagique

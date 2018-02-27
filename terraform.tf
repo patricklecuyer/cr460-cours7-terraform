@@ -10,11 +10,8 @@ resource "google_compute_instance" "instance1" {
   }
 
   network_interface {
-    subnetwork = "${google_compute_subnetwork.cr460-subnet1.self_link}" # Interface Reseau
-  }
-
-  access_config {
-    // Ephemeral IP
+    subnetwork    = "${google_compute_subnetwork.cr460-subnet1.self_link}" # Interface Reseau
+    access_config = {}
   }
 
   tags = ["web", "patate", "cr460", "linux"]

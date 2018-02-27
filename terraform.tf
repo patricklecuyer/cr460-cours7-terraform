@@ -9,6 +9,8 @@ resource "google_compute_instance" "instance1" {
     }
   }
 
+  metadata_startup_script = "sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install apache2 && sudo systemctl start apache2"
+
   network_interface {
     subnetwork    = "${google_compute_subnetwork.cr460-subnet1.self_link}" # Interface Reseau
     access_config = {}
